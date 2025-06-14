@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "mbedtls/md5.h"
+#include <openssl/md5.h>
 #include <curl/curl.h>
-#include "cjson/cJSON.h"
+#include <cjson/cJSON.h>
 
 // 内存结构体定义
 typedef struct MemoryStruct {
