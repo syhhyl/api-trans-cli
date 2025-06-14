@@ -1,8 +1,8 @@
 #include "translate.h"
 
 // 全局变量定义
-const char *appid = "20240129001953939";
-const char *secret_key = "ZjeHGmsmJqnsR6xlrBTK";
+const char *appid = ""; //appid
+const char *secret_key = ""; //secret_key
 
 int main(void) {
 	char userinput[200];
