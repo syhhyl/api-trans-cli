@@ -2,7 +2,8 @@
 //#include "mbedtls/md.h"  // 替换旧的头文件
 //#include <openssl/md5.h>
 
-char* calculate_md51(const char* input) {
+//DEPRECATED: will be removed in future versions
+char* calculate_md5(const char* input) {
 	mbedtls_md_context_t ctx;//结构体对象
 	unsigned char md5_binary[16]; // MD5结果为16字节
 	char* md5_result = malloc(33);//分配33字节内存

@@ -1,8 +1,9 @@
 #include "translate.h"
 
 // 声明外部全局变量
-extern const char *appid;
-extern const char *secret_key;
+// extern const char *appid;
+// extern const char *secret_key;
+
 
 char* cre_url(char userinput[200]) {
     char url[1000] = "https://fanyi-api.baidu.com/api/trans/vip/translate?";
@@ -14,13 +15,19 @@ char* cre_url(char userinput[200]) {
     sprintf(salt, "%d", a);
     
 
+    char *appid = (char *)malloc(sizeof(char) * 50);
+    char *secret_key = (char *)malloc(sizeof(char) * 50);
 
+    //read config
     //计算签名sign
+    read_config(&appid, &secret_key);
     char sign[120] = "";
     strcat(sign, appid);
     strcat(sign, q);
     strcat(sign, salt);
     strcat(sign, secret_key);
+    // printf("appid:%s\n", appid);
+    // printf("secret_key:%s\n", secret_key);
     
     //计算md5
     char* tmp = calculate_md5(sign); 

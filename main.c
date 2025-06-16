@@ -6,14 +6,12 @@ const char *secret_key = ""; //secret_key
 
 int main(void) {
 	char userinput[200];
-    	char exitcode = 'q';
+    char exitcode = 'q';
+    printf("welcomej~~~\n");
     
-    	printf("start fanyi ~~\n");
-    
-    	while (1) {
+    while (1) {
 		printf("enter your content(q quit): ");
 		fgets(userinput, sizeof(userinput), stdin);
-		//只能处理单个字符，还有输入不规范都会报错
 
 		//if (userinput[0] == exitcode && strlen(userinput) == 2) break;
 
@@ -25,6 +23,7 @@ int main(void) {
 		if (strcmp(userinput, "q") == 0) break;
 
 		char* url = cre_url(userinput);
+		printf("url:%s\n", url);
 		printf("%s\n", extract_dst_from_json(get_json_data(url)));
 		free(url); //释放资源
 	}
