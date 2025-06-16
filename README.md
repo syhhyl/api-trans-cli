@@ -32,6 +32,6 @@
 ### 编译
 
 ```shell
-gcc main.c json_parser.c cre_url.c cal_md51.c http_request.c -o trans-cli -I/opt/homebrew/include/ -L/opt/homebrew/lib/ -lcurl -lcjson -lcrypto    
+gcc main.c json_parser.c cre_url.c cal_md5_openssl.c http_request.c read_config.c -o trans-cli -I/opt/homebrew/include/ -L/opt/homebrew/lib/ -lcurl -lcjson -lcrypto    
 ```
 
