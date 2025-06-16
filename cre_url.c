@@ -1,9 +1,5 @@
 #include "translate.h"
 
-// 声明外部全局变量
-// extern const char *appid;
-// extern const char *secret_key;
-
 
 char* cre_url(char userinput[200]) {
     char url[1000] = "https://fanyi-api.baidu.com/api/trans/vip/translate?";
