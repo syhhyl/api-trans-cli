@@ -1,4 +1,6 @@
 #include "translate.h"
+#include <stdio.h>
+#include <string.h>
 
 char* extract_dst_from_json(const char* json_data) {
 	cJSON* root = cJSON_Parse(json_data);
@@ -28,19 +30,33 @@ char* extract_dst_from_json(const char* json_data) {
 				"dst":  "喜欢"
 		}]
 	*/ 
-	cJSON* result_entry = cJSON_GetArrayItem(trans_result, 0);
-	cJSON* dst = cJSON_GetObjectItemCaseSensitive(result_entry, "dst");
+
+	int len = cJSON_GetArraySize(trans_result);
+	char dst_result[300] = "";  
+	for (int i = 0; i < len; ++i) {
+		cJSON *entry = cJSON_GetArrayItem(trans_result, i);
+		cJSON *dst = cJSON_GetObjectItemCaseSensitive(entry, "dst");
+		if (dst == NULL|| !cJSON_IsString(dst)) {
+			fprintf(stderr, "error dst\n");
+			continue;
+		}
+		strcat(dst_result, dst->valuestring);	
+		//strcat(dst_result, " ");
+	}
+	
 
 
 	// char* json_str = cJSON_Print(dst);
 	// printf("JSON:\n%s\n", json_str);
-	if (dst == NULL || !cJSON_IsString(dst)) {
-		fprintf(stderr, "Error extracting 'dst' from JSON\n");
-		cJSON_Delete(root);
-		return NULL;
-	}
+	// if (dst == NULL || !cJSON_IsString(dst)) {
+	// 	fprintf(stderr, "Error extracting 'dst' from JSON\n");
+	// 	cJSON_Delete(root);
+	// 	return NULL;
+	// }
 	
-	char *dst_value = strdup(dst->valuestring);
+	
+	
 	cJSON_Delete(root); //释放资源
-	return dst_value; //返回翻译
+	//return dst_value; //返回翻译
+	return dst_result;
 }

@@ -1,4 +1,5 @@
 #include "translate.h"
+#include <string.h>
 
 
 char* cre_url(char userinput[200]) {
@@ -9,6 +10,9 @@ char* cre_url(char userinput[200]) {
     char salt[60];
     int a = rand();
     sprintf(salt, "%d", a);
+
+    
+    
     
 
     char *appid = (char *)malloc(sizeof(char) * 50);
@@ -27,9 +31,10 @@ char* cre_url(char userinput[200]) {
     
     //计算md5
     char* tmp = calculate_md5(sign); 
+    char *encode_q = curl_easy_escape(NULL, userinput, 0);
     
     strcat(url, "q=");
-    strcat(url, q);
+    strcat(url, encode_q);
     strcat(url, "&from=");
     strcat(url, from);
     strcat(url, "&to=");
@@ -43,5 +48,6 @@ char* cre_url(char userinput[200]) {
 
     char *result = strdup(url);//创建一个url字符串副本，返回指向副本的指针，url在函数结束时被释放
     free(tmp);  // 释放calculate_md5分配的内存
+    free(encode_q);
     return result;
 }
