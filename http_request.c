@@ -29,7 +29,6 @@ char *get_json_data(char *url) {
 
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 	curl = curl_easy_init();
-	puts(url);
 
 	if (curl) {
 		curl_easy_setopt(curl, CURLOPT_URL, url);

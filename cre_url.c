@@ -3,17 +3,13 @@
 
 
 char* cre_url(char userinput[200]) {
-    char url[1000] = "https://fanyi-api.baidu.com/api/trans/vip/translate?";
+    char url[300] = "https://fanyi-api.baidu.com/api/trans/vip/translate?";
     char *q = userinput;
-    char *from = "en";
+    char *from = "auto";
     char *to = "zh";
     char salt[60];
     int a = rand();
     sprintf(salt, "%d", a);
-
-    
-    
-    
 
     char *appid = (char *)malloc(sizeof(char) * 50);
     char *secret_key = (char *)malloc(sizeof(char) * 50);
@@ -26,9 +22,7 @@ char* cre_url(char userinput[200]) {
     strcat(sign, q);
     strcat(sign, salt);
     strcat(sign, secret_key);
-    // printf("appid:%s\n", appid);
-    // printf("secret_key:%s\n", secret_key);
-    
+
     //计算md5
     char* tmp = calculate_md5(sign); 
     char *encode_q = curl_easy_escape(NULL, userinput, 0);

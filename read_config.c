@@ -29,8 +29,6 @@ int read_config(char **appid, char **secret_key)
 	*appid = strdup(cJSON_GetObjectItem(root, "appid")->valuestring);
 	*secret_key = strdup(cJSON_GetObjectItem(root, "secret_key")->valuestring);
 
-	// printf("appid:%s\n", appid);
-	// printf("secret_key:%s\n", secret_key);
 
 	cJSON_Delete(root);
 	free(json_data);

@@ -14,7 +14,8 @@ typedef struct MemoryStruct {
     size_t size;
 } MemoryStruct;
 
-void read_config(const char *appid, const char *sercet_key);
+//读取配置
+void read_config(char **appid, char **sercet_key);
 
 // URL构造相关函数
 char *cre_url(char userinput[200]);
